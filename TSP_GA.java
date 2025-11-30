@@ -89,9 +89,7 @@ public class TSP_GA {
         int startPos = 1;
         int endPos = 1 + (int) (Math.random() * (V - 1));
 
-        for (int i = startPos; i < endPos; i++) {
-            child[i] = parent1[i];
-        }
+        if (endPos - startPos >= 0) System.arraycopy(parent1, startPos, child, startPos, endPos - startPos);
 
         // 2. Fill the rest from Parent 2 (if not already in child)
         int currentPos = 1;
@@ -149,7 +147,7 @@ public class TSP_GA {
             List<Individual> new_population = new ArrayList<>();
 
             // ELITISM: Carry over the single best individual directly
-            new_population.add(population.get(0));
+            new_population.add(population.getFirst());
 
             // Generate the rest of the new population
             while (new_population.size() < POP_SIZE) {
@@ -170,8 +168,8 @@ public class TSP_GA {
             population = new_population;
 
             // Print Best of Generation
-            System.out.println("Generation " + gen + " Best Fitness: " + population.get(0).fitness +
-                    " Path: " + Arrays.toString(population.get(0).gnome));
+            System.out.println("Generation " + gen + " Best Fitness: " + population.getFirst().fitness +
+                    " Path: " + Arrays.toString(population.getFirst().gnome));
             gen++;
         }
     }
