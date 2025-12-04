@@ -10,7 +10,8 @@ public class TSP_Comparison_System {
         EASY(10),       // 10 Cities (Fast)
         MEDIUM(12),     // 12 Cities (Noticeable delay for BF)
         HARD(14),       // 14 Cities (BF will take minutes/hours, GA is instant)
-        NP(17);         // NOTE: Going above 14 makes Brute Force impossible to wait for.
+        HARDER(15);
+        //NP(17);         // NOTE: Going above 14 makes Brute Force impossible to wait for.
 
         final int cities;
         DifficultyLevel(int cities) {
