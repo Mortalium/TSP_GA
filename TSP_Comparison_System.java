@@ -10,8 +10,9 @@ public class TSP_Comparison_System {
         EASY(10),       // 10 Cities (Fast)
         MEDIUM(12),     // 12 Cities (Noticeable delay for BF)
         HARD(14),       // 14 Cities (BF will take minutes/hours, GA is instant)
+        //NP(30),         
         HARDER(15);
-        //NP(17);         // NOTE: Going above 14 makes Brute Force impossible to wait for.
+                
 
         final int cities;
         DifficultyLevel(int cities) {
@@ -241,7 +242,7 @@ public class TSP_Comparison_System {
 
         BruteForceSolver bf = new BruteForceSolver();
         GASolver ga = new GASolver();
-
+        
         for (DifficultyLevel level : DifficultyLevel.values()) {
             TSPMap map = new TSPMap(level);
 
@@ -273,5 +274,23 @@ public class TSP_Comparison_System {
             // Force output flush
             System.out.flush();
         }
+        /*
+        DifficultyLevel level = DifficultyLevel.NP;
+
+        TSPMap map = new TSPMap(level);
+        long startGA = System.nanoTime();
+        int gaBest = ga.solve(map);
+        long endGA = System.nanoTime();
+        double timeGA = (endGA - startGA) / 1_000_000.0; // ms
+
+        System.out.printf("%-10s | %-12d | %-12d | %-10d | %-9.2f%% | %.1fx%n | %.1fms%n",
+                    level.name(),
+                    level.cities,
+                    0,
+                    gaBest,
+                    0.0,
+                    0.0,
+                    timeGA);
+        */
     }
 }
